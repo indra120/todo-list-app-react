@@ -1,10 +1,14 @@
-import { AddButton, Header } from './components';
+import { AddButton, Header, TaskLists } from './components';
+import DATA from './DATA';
 
 const App = () => {
   return (
     <>
       <Header />
-      <AddButton />
+      <main>
+        <AddButton />
+        <TaskLists tasks={DATA} />
+      </main>
     </>
   );
 };
