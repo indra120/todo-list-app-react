@@ -1,9 +1,10 @@
-import Header from './components/Header';
+import { AddButton, Header } from './components';
 
 const App = () => {
   return (
     <>
       <Header />
+      <AddButton />
     </>
   );
 };
