@@ -1,7 +1,7 @@
 import { Container, List, Typography as Text } from '@mui/material';
 import { TaskItem } from '.';
 
-const TaskLists = ({ tasks }) => {
+const TaskLists = ({ tasks, setTasks }) => {
   return (
     <Container>
       <Text variant='h5'>
@@ -9,7 +9,13 @@ const TaskLists = ({ tasks }) => {
       </Text>
       <List>
         {tasks.map(task => (
-          <TaskItem key={task.id} taskName={task.taskName} />
+          <TaskItem
+            id={task.id}
+            key={task.id}
+            taskName={task.taskName}
+            tasks={tasks}
+            setTasks={setTasks}
+          />
         ))}
       </List>
     </Container>

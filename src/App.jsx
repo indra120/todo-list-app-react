@@ -17,7 +17,7 @@ const App = () => {
           tasks={tasks}
           setTasks={setTasks}
         />
-        <TaskLists tasks={tasks} />
+        <TaskLists tasks={tasks} setTasks={setTasks} />
       </main>
     </>
   );

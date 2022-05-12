@@ -8,12 +8,26 @@ import {
 } from '@mui/material';
 import { EditOutlined, DeleteOutlined } from '@mui/icons-material';
 
-const TaskItem = ({ taskName }) => {
+const TaskItem = ({ id, taskName, tasks, setTasks }) => {
   return (
     <ListItem sx={style.listItem}>
       <Card sx={style.card}>
         <Box sx={style.leftBox}>
-          <Checkbox onChange={() => {}} />
+          <Checkbox
+            onChange={() => {
+              setTasks(
+                tasks.map(task => {
+                  if (id === task.id)
+                    return {
+                      ...task,
+                      isCompleted: !task.completed,
+                    };
+                  return task;
+                })
+              );
+              console.log(tasks);
+            }}
+          />
           <ListItemText primary={taskName} />
         </Box>
         <Box sx={style.rightBox}>
