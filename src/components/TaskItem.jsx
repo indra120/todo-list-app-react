@@ -20,7 +20,7 @@ const TaskItem = ({ id, taskName, tasks, setTasks }) => {
                   if (id === task.id)
                     return {
                       ...task,
-                      isCompleted: !task.completed,
+                      isCompleted: !task.isCompleted,
                     };
                   return task;
                 })
