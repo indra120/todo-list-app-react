@@ -1,7 +1,7 @@
 import { Fab } from '@mui/material';
 import { Add } from '@mui/icons-material';
 
-const AddButton = () => (
+const AddButton = ({ setDialog }) => (
   <Fab
     sx={{
       position: 'absolute',
@@ -10,7 +10,7 @@ const AddButton = () => (
       transform: 'translate(-50%,-50%)',
     }}
     color='primary'
-    onClick={() => {}}
+    onClick={() => setDialog(true)}
   >
     <Add />
   </Fab>
