@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
 import {
   Button,
   Dialog,
@@ -9,49 +8,47 @@ import {
   TextField,
 } from '@mui/material';
 
-const Form = ({ dialog, setDialog, tasks, setTasks }) => {
-  const [taskName, setTaskName] = useState('');
+const EditTaskForm = ({ dialog, id, setDialog, tasks, setTasks }) => {
+  const [newTaskName, setNewTaskName] = useState('');
   const closeDialog = () => setDialog(false);
 
   const submit = () => {
-    if (taskName === '') {
+    if (newTaskName === '') {
       alert('This field is required');
     } else {
-      setTasks([
-        ...tasks,
-        {
-          id: `task-${nanoid()}`,
-          taskName,
-          completed: false,
-        },
-      ]);
+      setTasks(
+        tasks.map(task => {
+          if (id === task.id) return { ...task, taskName: newTaskName };
+          return task;
+        })
+      );
       closeDialog();
-      setTaskName('');
+      setNewTaskName('');
     }
   };
 
   return (
     <Dialog open={dialog} onClose={closeDialog}>
-      <DialogTitle>What needs to be done?</DialogTitle>
+      <DialogTitle>Change task name</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           margin='dense'
-          id='taskName'
-          label='Task name'
+          id='newTaskName'
+          label='New Task name'
           type='text'
           fullWidth
           variant='standard'
-          value={taskName}
-          onChange={e => setTaskName(e.target.value)}
+          value={newTaskName}
+          onChange={e => setNewTaskName(e.target.value)}
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={closeDialog}>Cancel</Button>
-        <Button onClick={submit}>Add</Button>
+        <Button onClick={submit}>Save</Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default Form;
+export default EditTaskForm;

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -7,8 +8,10 @@ import {
   ListItemText,
 } from '@mui/material';
 import { EditOutlined, DeleteOutlined } from '@mui/icons-material';
+import EditTaskForm from './EditTaskForm';
 
 const TaskItem = ({ id, taskName, tasks, setTasks }) => {
+  const [dialog, setDialog] = useState(false);
   return (
     <ListItem sx={style.listItem}>
       <Card sx={style.card}>
@@ -30,8 +33,9 @@ const TaskItem = ({ id, taskName, tasks, setTasks }) => {
           />
           <ListItemText primary={taskName} />
         </Box>
+
         <Box sx={style.rightBox}>
-          <Button onClick={() => {}}>
+          <Button onClick={() => setDialog(true)}>
             <EditOutlined />
           </Button>
           <Button
@@ -40,6 +44,14 @@ const TaskItem = ({ id, taskName, tasks, setTasks }) => {
             <DeleteOutlined />
           </Button>
         </Box>
+
+        <EditTaskForm
+          dialog={dialog}
+          id={id}
+          tasks={tasks}
+          setTasks={setTasks}
+          setDialog={setDialog}
+        />
       </Card>
     </ListItem>
   );

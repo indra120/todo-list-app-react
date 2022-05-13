@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AddButton, Form, Header, TaskLists } from './components';
+import { AddButton, NewTaskForm, Header, TaskLists } from './components';
 import DATA from './DATA';
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
       <Header />
       <main>
         <AddButton setDialog={setDialog} />
-        <Form
+        <NewTaskForm
           dialog={dialog}
           setDialog={setDialog}
           tasks={tasks}

@@ -5,7 +5,9 @@ const TaskLists = ({ tasks, setTasks }) => {
   return (
     <Container>
       <Text variant='h5'>
-        {tasks.length > 0 ? `${tasks.length} Tasks remaining` : ''}
+        {tasks.length > 0
+          ? `${tasks.length} Task${tasks.length === 1 ? '' : 's'} remaining`
+          : ''}
       </Text>
       <List>
         {tasks.map(task => (
