@@ -34,7 +34,9 @@ const TaskItem = ({ id, taskName, tasks, setTasks }) => {
           <Button onClick={() => {}}>
             <EditOutlined />
           </Button>
-          <Button onClick={() => {}}>
+          <Button
+            onClick={() => setTasks(tasks.filter(task => id !== task.id))}
+          >
             <DeleteOutlined />
           </Button>
         </Box>
