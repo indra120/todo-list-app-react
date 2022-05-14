@@ -3,34 +3,32 @@ import {
   Box,
   Button,
   Card,
-  Checkbox,
   ListItem,
   ListItemText,
 } from '@mui/material';
 import { EditOutlined, DeleteOutlined } from '@mui/icons-material';
 import EditTaskForm from './EditTaskForm';
 
-const TaskItem = ({ id, taskName, tasks, setTasks }) => {
+const TaskItem = ({ id, taskName, tasks, setTasks, Mark }) => {
   const [dialog, setDialog] = useState(false);
+  const markAsCompleted = () => {
+    setTasks(
+      tasks.map(task => {
+        if (id === task.id)
+          return {
+            ...task,
+            isCompleted: !task.isCompleted,
+          };
+        return task;
+      })
+    );
+  };
+
   return (
     <ListItem sx={style.listItem}>
       <Card sx={style.card}>
         <Box sx={style.leftBox}>
-          <Checkbox
-            onChange={() => {
-              setTasks(
-                tasks.map(task => {
-                  if (id === task.id)
-                    return {
-                      ...task,
-                      isCompleted: !task.isCompleted,
-                    };
-                  return task;
-                })
-              );
-              console.log(tasks);
-            }}
-          />
+          <Mark onClick={markAsCompleted} />
           <ListItemText primary={taskName} />
         </Box>
 
