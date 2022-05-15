@@ -1,9 +1,9 @@
 import { Checkbox, Container, List, Typography as Text } from '@mui/material';
 import { RepeatButton,TaskItem } from '.';
 
-const TaskLists = ({ Filter, filterList, tasks, setTasks }) => {
+const TaskLists = ({ filter, filterList, tasks, setTasks }) => {
   const taskList = tasks
-    .filter(filterList[Filter])
+    .filter(filterList[filter])
     .map(task => (
       <TaskItem
         id={task.id}

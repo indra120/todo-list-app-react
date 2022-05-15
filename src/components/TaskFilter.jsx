@@ -1,12 +1,20 @@
 import { Link } from '@mui/material';
 
-const TaskFilter = ({ name, setFilter }) => {
+const TaskFilter = ({ name, setDrawer, setFilter }) => {
   return (
     <Link
       href='#'
-      color='inherit'
       underline='none'
-      onClick={() => setFilter(name)}
+      onClick={() => {
+        setFilter(name);
+        setDrawer(false);
+      }}
+      sx={{
+        color: { xs: 'primary', sm: 'inherit' },
+        display: 'block',
+        width: '100%',
+        textAlign: 'center',
+      }}
     >
       {name}
     </Link>

@@ -26,7 +26,7 @@ const App = () => {
           setTasks={setTasks}
         />
         <TaskLists
-          Filter={filter}
+          filter={filter}
           filterList={FILTER_MAP}
           tasks={tasks}
           setTasks={setTasks}
