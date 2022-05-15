@@ -1,5 +1,5 @@
 import { Checkbox, Container, List, Typography as Text } from '@mui/material';
-import { RepeatButton,TaskItem } from '.';
+import { RepeatButton, TaskItem } from '.';
 
 const TaskLists = ({ filter, filterList, tasks, setTasks }) => {
   const taskList = tasks
@@ -14,15 +14,17 @@ const TaskLists = ({ filter, filterList, tasks, setTasks }) => {
         Mark={task.isCompleted ? RepeatButton : Checkbox}
       />
     ));
+    
+  const headingText =
+    taskList.length === 0
+      ? ''
+      : `${taskList.length} ${
+          taskList.length !== 1 ? 'tasks' : 'task'
+        } remaining`;
+
   return (
     <Container>
-      <Text variant='h5'>
-        {taskList.length === 0
-          ? ''
-          : `${taskList.length} ${
-              taskList.length !== 1 ? 'tasks' : 'task'
-            } remaining`}
-      </Text>
+      <Text variant='h5'>{headingText}</Text>
       <List>{taskList}</List>
     </Container>
   );

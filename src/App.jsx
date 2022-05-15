@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { AddButton, NewTaskForm, Header, TaskLists } from './components';
-import DATA from './DATA';
 
 const FILTER_MAP = {
   All: () => true,
@@ -10,7 +9,7 @@ const FILTER_MAP = {
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 const App = () => {
-  const [tasks, setTasks] = useState(DATA);
+  const [tasks, setTasks] = useState([]);
   const [dialog, setDialog] = useState(false);
   const [filter, setFilter] = useState('All');
 

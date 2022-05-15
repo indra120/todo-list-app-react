@@ -11,6 +11,7 @@ import EditTaskForm from './EditTaskForm';
 
 const TaskItem = ({ id, taskName, tasks, setTasks, Mark }) => {
   const [dialog, setDialog] = useState(false);
+  
   const markAsCompleted = () => {
     setTasks(
       tasks.map(task => {
