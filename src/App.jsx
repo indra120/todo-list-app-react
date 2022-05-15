@@ -17,7 +17,10 @@ const App = () => {
     <>
       <Header filters={FILTER_NAMES} setFilter={setFilter} />
       <main>
-        <AddButton setDialog={setDialog} />
+        <AddButton
+          setDialog={setDialog}
+          sx={dialog ? { display: 'none' } : ''}
+        />
         <NewTaskForm
           dialog={dialog}
           setDialog={setDialog}
