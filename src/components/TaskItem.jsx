@@ -74,7 +74,9 @@ const style = {
   },
   rightBox: {
     display: 'flex',
-    button: { minWidth: '24px' },
+    button: {
+      minWidth: '24px'
+    },
   },
 };
 

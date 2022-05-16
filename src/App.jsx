@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import { AddButton, NewTaskForm, Header, TaskLists } from './components';
 
-const FILTER_MAP = {
+const filterMap = {
   All: () => true,
   Active: task => !task.isCompleted,
   Completed: task => task.isCompleted,
 };
-const FILTER_NAMES = Object.keys(FILTER_MAP);
+const filterNames = Object.keys(filterMap);
+
+export const State = createContext();
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -14,27 +16,24 @@ const App = () => {
   const [filter, setFilter] = useState('All');
 
   return (
-    <>
-      <Header filters={FILTER_NAMES} setFilter={setFilter} />
+    <State.Provider
+      value={{
+        dialog,
+        setDialog,
+        tasks,
+        setTasks,
+        filter,
+        setFilter,
+        filterNames,
+      }}
+    >
+      <Header />
       <main>
-        <AddButton
-          setDialog={setDialog}
-          sx={dialog ? { display: 'none' } : ''}
-        />
-        <NewTaskForm
-          dialog={dialog}
-          setDialog={setDialog}
-          tasks={tasks}
-          setTasks={setTasks}
-        />
-        <TaskLists
-          filter={filter}
-          filterList={FILTER_MAP}
-          tasks={tasks}
-          setTasks={setTasks}
-        />
+        <AddButton sx={dialog ? { display: 'none' } : ''} />
+        <NewTaskForm />
+        <TaskLists filter={filter} filterList={filterMap} />
       </main>
-    </>
+    </State.Provider>
   );
 };
 

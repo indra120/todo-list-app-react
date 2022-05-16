@@ -1,14 +1,13 @@
-import { TaskFilter } from '.';
-import { List, ListItem } from '@mui/material';
+import { List } from '@mui/material';
 
-const DesktopMenu = ({ filters, setFilter }) => (
-  <List sx={{ display: { xs: 'none', sm: 'flex' }, ml: 'auto' }}>
-    {filters.map(filter => (
-      <ListItem key={filter}>
-        <TaskFilter name={filter} setFilter={setFilter} />
-      </ListItem>
-    ))}
-  </List>
-);
+const DesktopMenu = ({ children }) => <List sx={style}>{children}</List>;
+
+const style = {
+  display: {
+    xs: 'none',
+    sm: 'flex'
+  },
+  ml: 'auto'
+};
 
 export default DesktopMenu;

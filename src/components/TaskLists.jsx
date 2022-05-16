@@ -1,7 +1,11 @@
+import { State } from '../App';
+import { useContext } from 'react';
 import { Checkbox, Container, List, Typography as Text } from '@mui/material';
 import { RepeatButton, TaskItem } from '.';
 
-const TaskLists = ({ filter, filterList, tasks, setTasks }) => {
+const TaskLists = ({ filter, filterList }) => {
+  const { tasks, setTasks } = useContext(State);
+
   const taskList = tasks
     .filter(filterList[filter])
     .map(task => (
@@ -14,7 +18,7 @@ const TaskLists = ({ filter, filterList, tasks, setTasks }) => {
         Mark={task.isCompleted ? RepeatButton : Checkbox}
       />
     ));
-    
+
   const headingText =
     taskList.length === 0
       ? ''

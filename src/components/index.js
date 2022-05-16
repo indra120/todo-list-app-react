@@ -3,6 +3,7 @@ import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
 import NewTaskForm from './NewTaskForm';
 import Header from './Header';
+import FilterMenu from './FilterMenu';
 import RepeatButton from './RepeatButton';
 import TaskItem from './TaskItem';
 import TaskFilter from './TaskFilter';
@@ -14,6 +15,7 @@ export {
   MobileMenu,
   NewTaskForm,
   Header,
+  FilterMenu,
   RepeatButton,
   TaskItem,
   TaskFilter,

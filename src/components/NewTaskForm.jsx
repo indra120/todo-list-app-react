@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { State } from '../App';
+import { useContext, useState } from 'react';
 import { nanoid } from 'nanoid';
 import {
   Button,
@@ -9,8 +10,9 @@ import {
   TextField,
 } from '@mui/material';
 
-const NewTaskForm = ({ dialog, setDialog, tasks, setTasks }) => {
+const NewTaskForm = () => {
   const [taskName, setTaskName] = useState('');
+  const { dialog, setDialog, tasks, setTasks } = useContext(State);
   const closeDialog = () => setDialog(false);
 
   const submit = () => {

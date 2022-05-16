@@ -1,49 +1,67 @@
-import { DesktopMenu, MobileMenu, TaskFilter } from '.';
-import { useState } from 'react';
+import { DesktopMenu, FilterMenu, MobileMenu } from '.';
+import { createContext, useState } from 'react';
 import {
   AppBar,
   Container,
   IconButton,
-  ListItem,
   Toolbar,
   Typography as Text,
 } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 
-const Header = ({ filters, setFilter }) => {
+export const Drawer = createContext();
+
+const Header = () => {
   const [drawer, setDrawer] = useState(false);
-
-  const filterList = filters.map(filter => (
-    <ListItem key={filter}>
-      <TaskFilter name={filter} setDrawer={setDrawer} setFilter={setFilter} />
-    </ListItem>
-  ));
-
   return (
-    <>
-      <AppBar sx={{ zIndex: '1400' }}>
+    <Drawer.Provider value={{ drawer, setDrawer }}>
+      <AppBar sx={style.appBar}>
         <Container>
-          <Toolbar sx={{ px: '0px !important', position: 'relative' }}>
+          <Toolbar sx={style.toolbar}>
             <IconButton
               color='inherit'
-              sx={{ display: { sm: 'none' }, position: 'absolute' }}
+              sx={style.iconButton}
               onClick={() => setDrawer(!drawer)}
             >
               <Menu />
             </IconButton>
-            <Text variant='h5' sx={{ mx: { xs: 'auto', sm: 'unset' } }}>
+            <Text variant='h5' sx={style.logo}>
               My Tasks
             </Text>
-            <DesktopMenu filters={filters} setFilter={setFilter} />
+            <DesktopMenu>
+              <FilterMenu />
+            </DesktopMenu>
           </Toolbar>
         </Container>
       </AppBar>
       <Toolbar></Toolbar>
-      <MobileMenu drawer={drawer} setDrawer={setDrawer}>
-        {filterList}
+      <MobileMenu>
+        <FilterMenu />
       </MobileMenu>
-    </>
+    </Drawer.Provider>
   );
+};
+
+const style = {
+  appBar: {
+    zIndex: '1400',
+  },
+  iconButton: {
+    display: {
+      sm: 'none'
+    },
+    position: 'absolute'
+  },
+  logo: {
+    mx: {
+      xs: 'auto',
+      sm: 'unset',
+    },
+  },
+  toolbar: {
+    px: '0px !important',
+    position: 'relative',
+  },
 };
 
 export default Header;
