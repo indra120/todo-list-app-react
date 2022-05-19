@@ -24,7 +24,7 @@ const NewTaskForm = () => {
         {
           id: `task-${nanoid()}`,
           taskName,
-          completed: false,
+          isCompleted: false,
         },
       ]);
       closeDialog();

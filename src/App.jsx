@@ -11,7 +11,7 @@ const filterNames = Object.keys(filterMap);
 export const State = createContext();
 
 const App = () => {
-  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')));
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || []);
   const [dialog, setDialog] = useState(false);
   const [filter, setFilter] = useState('All');
 
