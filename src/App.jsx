@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import { AddButton, NewTaskForm, Header, TaskLists } from './components';
 
 const filterMap = {
@@ -11,9 +11,13 @@ const filterNames = Object.keys(filterMap);
 export const State = createContext();
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')));
   const [dialog, setDialog] = useState(false);
   const [filter, setFilter] = useState('All');
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <State.Provider
